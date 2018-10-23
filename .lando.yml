@@ -1,0 +1,4 @@
+name: ferreteria
+recipe: laravel
+config:
+  webroot: .
