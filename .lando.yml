@@ -1,4 +1,5 @@
 name: ferreteria
 recipe: laravel
 config:
-  webroot: .
+  webroot: public/
+  via: nginx

@@ -16,6 +16,7 @@
 
 <script>
     export default {
+        props: ['data'],
         mounted() {
             console.log('Component mounted.')
         }
