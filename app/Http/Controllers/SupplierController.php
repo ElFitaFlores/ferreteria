@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Proveedor;
+use App\Supplier;
 use Illuminate\Http\Request;
 
-class ProveedorController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        return view('proveedor')->with(['data' => Proveedor::get()]);
+
+        return view('supplier')->with(['data' => supplier::get()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier-detail');
     }
 
     /**
@@ -35,11 +36,12 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        $proveedor = new Proveedor();
-        $proveedor->fill($request->all());
-        $proveedor->save();
+        $supplier = new Supplier();
+        $supplier->timestamps = false;
+        $supplier->fill($request->all());
+        $supplier->save();
 
-        return response($proveedor);
+        return redirect('supplier');
     }
 
     /**
@@ -50,7 +52,7 @@ class ProveedorController extends Controller
      */
     public function show($id)
     {
-        return response(Proveedor::find($id));
+        return response(Supplier::find($id));
     }
 
     /**
@@ -73,11 +75,11 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $proveedor = Proveedor::find($id);
-        $proveedor->fill($request->all());
-        $proveedor->save();
+        $supplier = Supplier::find($id);
+        $supplier->fill($request->all());
+        $supplier->save();
 
-        return response($proveedor);
+        return response($supplier);
     }
 
     /**
@@ -88,8 +90,8 @@ class ProveedorController extends Controller
      */
     public function destroy($id)
     {
-        $proveedor = Proveedor::find($id);
-        $proveedor->delete();
+        $supplier = Supplier::find($id);
+        $supplier->delete();
 
         return response(null);
     }

@@ -3,20 +3,21 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">Example Component</div>
-
+                    <div class="card-header">Proveedores</div>
                     <div class="card-body">
-                        I'm an example component.
+                        <ul>
+                            <li v-for="(value, key) in requestData">{{value}}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['data'],
+        props: ['requestData'],
         mounted() {
             console.log('Component mounted.')
         }
