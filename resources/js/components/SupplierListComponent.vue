@@ -6,7 +6,7 @@
                     <div class="card-header">Proveedores</div>
                     <div class="card-body">
                         <ul>
-                            <li v-for="(value, key) in requestData">{{value}}</li>
+                            <li v-for="value in data"><a :href="`/supplier/${value.id}`">{{value.name}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -19,7 +19,12 @@
     export default {
         props: ['requestData'],
         mounted() {
-            console.log('Component mounted.')
+            console.log(this.requestData)
+        },
+        computed: {
+            data() {
+                return JSON.parse(this.requestData)
+            }
         }
     }
 </script>

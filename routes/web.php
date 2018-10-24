@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('supplier','SupplierController');
+Route::resource('supplier','SupplierController')->middleware('auth');
 
 Auth::routes();
 
