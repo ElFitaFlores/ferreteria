@@ -25,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('supplier-detail');
+        return view('supplier-detail')->with(['item' => []]);
     }
 
     /**
@@ -52,7 +52,7 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        return response(Supplier::find($id));
+        return view('supplier-detail')->with(['item' => Supplier::find($id)]);
     }
 
     /**
@@ -63,7 +63,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('supplier-detail')->with(['item' => Supplier::find($id)]);
     }
 
     /**

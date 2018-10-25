@@ -6,7 +6,7 @@
                     <div class="card-header">Proveedores</div>
                     <div class="card-body">
                         <ul>
-                            <li v-for="value in data"><a :href="`/supplier/${value.id}`">{{value.name}}</a></li>
+                            <li v-for="value in data"><a :href="`/supplier/${value.id}/edit`">{{value.name}}</a></li>
                         </ul>
                     </div>
                 </div>
