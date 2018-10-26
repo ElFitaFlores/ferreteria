@@ -7,7 +7,6 @@
 
                     <div class="card-body" v-if="item">
                         <form action="" v-on:submit.prevent="save()">
-                            <input type="hidden" name="_token" v-model="item.csrf">
                             <div class="form-group">
                                 <label for="name">Nombre</label>
                                 <input type="text" name="name" id="name" class="form-control" v-model="item.name">
@@ -25,6 +24,7 @@
                                 <input type="text" name="email" id="email" class="form-control"  v-model="item.email">
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button class="btn btn-danger" v-on:click="borrar">Eliminar</button>
                         </form>
                     </div>
                 </div>
@@ -41,20 +41,23 @@
         }),
         mounted() {
             this.item = JSON.parse(this.requestItem);
-            this.item.csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
         methods: {
             async save(){
                 if(this.item.id){
-                    let request = await axios.put('/supplier',this.item)
+                    await axios.put('/supplier/'+this.item.id, qs.stringify(this.item)).then((response) => {
+                        window.location.href = '/supplier';
+                    });
                 }else{
-                    let request = await axios.post('/supplier',this.item)
+                    await axios.post('/supplier', qs.stringify(this.item)).then((response) => {
+                        window.location.href = '/supplier';
+                    });
                 }
-
-                request.then((response) => {
+            },
+            async borrar(){
+                await axios.delete('/supplier/'+this.item.id).then((response) => {
                     window.location.href = '/supplier';
                 });
-
             }
         },
         props: ['requestItem'],

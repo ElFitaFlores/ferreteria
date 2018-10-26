@@ -41,7 +41,7 @@ class SupplierController extends Controller
         $supplier->fill($request->all());
         $supplier->save();
 
-        return redirect('supplier');
+        return response([]);
     }
 
     /**
