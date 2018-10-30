@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">Proveedor</div>
+                    <div class="card-header">Producto</div>
 
                     <div class="card-body" v-if="item">
                         <form action="" v-on:submit.prevent="save()">
@@ -12,19 +12,15 @@
                                 <input type="text" name="name" id="name" class="form-control" v-model="item.name">
                             </div>
                             <div class="form-group">
-                                <label for="nit">NIT</label>
-                                <input type="text" name="nit" id="nit" class="form-control" v-model="item.nit">
+                                <label for="quantity">Cantidad</label>
+                                <input type="text" name="quantity" id="quantity" class="form-control" v-model="item.quantity">
                             </div>
                             <div class="form-group">
-                                <label for="phone">Telefono</label>
-                                <input type="text" name="phone" id="phone" class="form-control" v-model="item.phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control"  v-model="item.email">
+                                <label for="price">Precio</label>
+                                <input type="text" name="price" id="price" class="form-control" v-model="item.price">
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
-                            <button class="btn btn-danger" v-on:click="borrar" v-if="item.id">Eliminar</button>
+                            <button class="btn btn-danger" v-on:click="borrar">Eliminar</button>
                         </form>
                     </div>
                 </div>
@@ -45,22 +41,22 @@
         methods: {
             async save(){
                 if(this.item.id){
-                    await axios.put('/supplier/'+this.item.id, qs.stringify(this.item)).then((response) => {
-                        this.redirect()
+                    await axios.put('/product/'+this.item.id, qs.stringify(this.item)).then((response) => {
+                        this.redirect();
                     });
                 }else{
-                    await axios.post('/supplier', qs.stringify(this.item)).then((response) => {
-                        this.redirect()
+                    await axios.post('/product', qs.stringify(this.item)).then((response) => {
+                        this.redirect();
                     });
                 }
             },
             async borrar(){
-                await axios.delete('/supplier/'+this.item.id).then((response) => {
-                    this.redirect()
+                await axios.delete('/product/'+this.item.id).then((response) => {
+                    this.redirect();
                 });
             },
             redirect(){
-                window.location.href = '/supplier';
+                window.location.href = '/product';
             }
         },
         props: ['requestItem'],

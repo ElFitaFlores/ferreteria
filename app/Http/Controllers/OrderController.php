@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Supplier;
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +13,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-
-        return view('list')->with([
-            'data' => Supplier::get(),
-            'url' => 'supplier',
-            'name' => 'Proveedores'
-        ]);
+        //
     }
 
     /**
@@ -29,7 +23,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('supplier-detail')->with(['item' => []]);
+        return view('order-detail')->with(['item' => []]);
     }
 
     /**
@@ -40,12 +34,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $supplier = new Supplier();
-        $supplier->timestamps = false;
-        $supplier->fill($request->all());
-        $supplier->save();
-
-        return response([]);
+        //
     }
 
     /**
@@ -56,7 +45,7 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        return view('supplier-detail')->with(['item' => Supplier::find($id)]);
+        //
     }
 
     /**
@@ -67,7 +56,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        return view('supplier-detail')->with(['item' => Supplier::find($id)]);
+        //
     }
 
     /**
@@ -79,11 +68,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->fill($request->all());
-        $supplier->save();
-
-        return response($supplier);
+        //
     }
 
     /**
@@ -94,9 +79,6 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->delete();
-
-        return response(null);
+        //
     }
 }

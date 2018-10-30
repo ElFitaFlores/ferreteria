@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Supplier;
+use App\Product;
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,10 @@ class SupplierController extends Controller
      */
     public function index()
     {
-
         return view('list')->with([
-            'data' => Supplier::get(),
-            'url' => 'supplier',
-            'name' => 'Proveedores'
+            'data' => Product::get(),
+            'url' => 'product',
+            'name' => 'Productos'
         ]);
     }
 
@@ -29,7 +28,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('supplier-detail')->with(['item' => []]);
+        return view('product-detail')->with(['item' => []]);
     }
 
     /**
@@ -40,10 +39,10 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $supplier = new Supplier();
-        $supplier->timestamps = false;
-        $supplier->fill($request->all());
-        $supplier->save();
+        $product = new Product();
+        $product->timestamps = false;
+        $product->fill($request->all());
+        $product->save();
 
         return response([]);
     }
@@ -56,7 +55,7 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        return view('supplier-detail')->with(['item' => Supplier::find($id)]);
+        return view('product-detail')->with(['item' => Product::find($id)]);
     }
 
     /**
@@ -67,7 +66,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        return view('supplier-detail')->with(['item' => Supplier::find($id)]);
+        return view('product-detail')->with(['item' => Product::find($id)]);
     }
 
     /**
@@ -79,11 +78,11 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->fill($request->all());
-        $supplier->save();
+        $product = Product::find($id);
+        $product->fill($request->all());
+        $product->save();
 
-        return response($supplier);
+        return response($product);
     }
 
     /**
@@ -94,9 +93,9 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::find($id);
-        $supplier->delete();
+        $item = Product::find($id);
+        $item->delete();
 
-        return response(null);
+        return response();
     }
 }

@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">Proveedor</div>
+                    <div class="card-header">Pedido</div>
 
                     <div class="card-body" v-if="item">
                         <form action="" v-on:submit.prevent="save()">
