@@ -51,7 +51,7 @@
                         @else
                             <li class="nav-item"><a href="/supplier" class="nav-link">Proveedores</a></li>
                             <li class="nav-item"><a href="/product" class="nav-link">Productos</a></li>
-                            <li class="nav-item"><a href="/order" class="nav-link">Pedidos</a></li>
+                            <li class="nav-item"><a href="/order/create" class="nav-link">Pedidos</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

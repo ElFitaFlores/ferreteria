@@ -16,12 +16,22 @@
                                 <input type="text" name="nit" id="nit" class="form-control" v-model="item.nit">
                             </div>
                             <div class="form-group">
-                                <label for="phone">Telefono</label>
-                                <input type="text" name="phone" id="phone" class="form-control" v-model="item.phone">
+                                <label for="address">Direccion</label>
+                                <input type="text" name="address" id="address" class="form-control" v-model="item.address">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control"  v-model="item.email">
+                                <label for="product">Producto</label>
+                                <select name="product" id="product">
+                                    <option v-for="product in products" value="product.id">{{product.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="paid">Pagado</label>
+                                <input type="checkbox" name="paid" id="paid" class="form-control"  v-model="item.paid">
+                            </div>
+                            <div class="form-group" v-if="item.paid">
+                                <label for="serie">Factura</label>
+                                <input type="text" name="serie" id="serie" class="form-control" v-model="item.serie">
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                             <button class="btn btn-danger" v-on:click="borrar" v-if="item.id">Eliminar</button>
@@ -37,33 +47,22 @@
     export default {
         name: "SupplierDetailComponent",
         data: () => ({
-            item: null
+            item: null,
+            products: null,
         }),
         mounted() {
             this.item = JSON.parse(this.requestItem);
+            this.products = JSON.parse(this.requestProducts);
         },
         methods: {
             async save(){
-                if(this.item.id){
-                    await axios.put('/supplier/'+this.item.id, qs.stringify(this.item)).then((response) => {
-                        this.redirect()
-                    });
-                }else{
-                    await axios.post('/supplier', qs.stringify(this.item)).then((response) => {
-                        this.redirect()
-                    });
-                }
-            },
-            async borrar(){
-                await axios.delete('/supplier/'+this.item.id).then((response) => {
-                    this.redirect()
-                });
+                this.redirect()
             },
             redirect(){
-                window.location.href = '/supplier';
+                window.location.href = '/order/create';
             }
         },
-        props: ['requestItem'],
+        props: ['requestItem', 'requestProducts'],
     }
 </script>
 

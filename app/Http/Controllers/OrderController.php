@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -23,7 +24,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order-detail')->with(['item' => []]);
+        return view('order-detail')->with(['item' => [], 'products' => Product::get()]);
     }
 
     /**
